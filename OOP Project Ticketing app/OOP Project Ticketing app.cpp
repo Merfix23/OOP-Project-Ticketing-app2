@@ -10,7 +10,7 @@ class Location {
     string name = "";
     int maxSeats = 0;
     int rows = 0;
-    enum seatType {VIP, Occupied, Avalable, Disabled, Other};
+    enum seatType {VIP, Occupied, Avalable, Disables};
 
 
 };
