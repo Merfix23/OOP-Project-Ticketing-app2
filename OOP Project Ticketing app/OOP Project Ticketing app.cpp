@@ -1,21 +1,55 @@
-// OOP Project Ticketing app.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 #include <string>
 #include <string.h>
+#include <cstring>
+
 using namespace std;
 
 class Location {
-    string name = "";
+private:
+    char* name;
     int maxSeats = 0;
     int rows = 0;
-    enum seatType {VIP, Occupied, Avalable, Disables};
+  
+public:
+    //Default constructor
 
+    Location() :  maxSeats(0), rows(0){}
+    //Constructor with parameters
+
+    Location(char* name, int maxSeats, int rows) {
+        this->name = new char[strlen(name) + 1];
+        strcpy(this->name, name);
+        this->maxSeats = maxSeats;
+        this->rows = rows;
+    }
 
 };
 
+
+class Ticket {
+private:
+    char* eventName;
+    double price;
+    int ticketNumber;
+
+    
+
+public:
+    // Default constructor
+    Ticket(char* eventName, int price, int ticketNumber){
+        this->eventName = new char[strlen(eventName) + 1];
+        strcpy(this->eventName, eventName);
+        this->price = price;
+        this->ticketNumber = ticketNumber;
+    }
+
+   
+  
+};
+
+
 int main()
 {
-    int n = 0;
+    
 }
