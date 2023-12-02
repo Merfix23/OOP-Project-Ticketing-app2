@@ -10,7 +10,7 @@ class Row {
     string* seats;
 
     //Constructor with one parameter
-    Row(int size, int rowNr) : size(size) {
+    Row(int size) : size(size) {
         seats = new string[size];
         for (int i = 0; i < size; i++) {
             seats[i] = i + 1;
@@ -45,20 +45,30 @@ class Location {
 private:
     char* name;
     int maxSeats = 0;
-    int rows = 0;
+    Row* rows;
+    int rowCount;
 
 public:
     //Default constructor
 
-    Location() : maxSeats(0), rows(0) {}
+    Location() : maxSeats(0) {}
     //Constructor with parameters
 
-    Location(char* name, int maxSeats, int rows) {
+    Location(char* name, int maxSeats, int rowCount, int seatsPerRow) {
         this->name = new char[strlen(name) + 1];
         strcpy(this->name, name);
-        this->maxSeats = maxSeats;
-        this->rows = rows;
+        this->maxSeats += seatsPerRow;
+        this->rows = new Row[rowCount];
+        for (int i = 0; i < seatsPerRow; i++) {
+            rows[i] = Row(seatsPerRow);
+        }
     }
+
+    //destructor 
+    ~Location() {
+        delete[] rows;
+    }
+
 
 };
 
