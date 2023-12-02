@@ -8,6 +8,7 @@ using namespace std;
 class Row {
     int size = 0;
     string* seats;
+    int rowNumber = 0;
 
     //Constructor with one parameter
     Row(int size) : size(size) {
@@ -39,6 +40,29 @@ class Row {
     ~Row() {
         delete[] seats;
     }
+
+    //setters
+public:
+    void setRowNumber(int rownr) {
+        this->rowNumber = rownr;
+    }
+
+    void setSize(int size) {
+        if (size <= 0) {
+            throw exception("Incorrect size value");
+        }
+        this->size = size;
+    }
+
+    //getters
+    int getSize() {
+        return this->size;
+    }
+
+    int getRowNumber() {
+        return this->rowNumber;
+    }
+
 };
 
 class Location {
@@ -54,10 +78,9 @@ public:
     Location() : maxSeats(0) {}
     //Constructor with parameters
 
-    Location(char* name, int maxSeats, int rowCount, int seatsPerRow) {
+    Location(char* name, int maxSeats, int rowCount, int seatsPerRow): maxSeats(maxSeats) {
         this->name = new char[strlen(name) + 1];
         strcpy(this->name, name);
-        this->maxSeats += seatsPerRow;
         this->rows = new Row[rowCount];
         for (int i = 0; i < seatsPerRow; i++) {
             rows[i] = Row(seatsPerRow);
